@@ -6,7 +6,7 @@ set -x
         yes | sudo yum install make glibc-devel gcc patch ncurses-devel util-linux autoconf-archive automake protobuf-devel zlib-devel gcc-c++ ncurses-devel openssl-devel xz-devel
     {{ else -}}
         if [ ! -e /opt/pbs ]; then
-            sudo apt-get install build-essentials
+            sudo apt-get install build-essentials libpcre3-dev liblzma-dev
         fi
     {{ end -}}
 {{ end -}}
