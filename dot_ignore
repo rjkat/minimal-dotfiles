@@ -1,0 +1,14 @@
+*.swp
+*.csv
+*.o
+*.d
+*.f
+*.vcxproj
+*.filters
+*.pbxproj
+*.xcscheme
+*.xcworkspace/*
+*.xcuserstate
+*.plist
+*~
+Makefile

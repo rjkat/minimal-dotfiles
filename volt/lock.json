@@ -1,0 +1,168 @@
+{
+  "version": 2,
+  "current_profile_name": "default",
+  "repos": [
+    {
+      "type": "git",
+      "path": "github.com/ErichDonGubler/vim-sublime-monokai",
+      "version": "0a5df59324c43d44b74d39f94077d55e589573ae"
+    },
+    {
+      "type": "git",
+      "path": "github.com/FranklandJack/llvm-vim",
+      "version": "bc2e54d6d62843a1e626cc05eed1f248acc83a9a"
+    },
+    {
+      "type": "git",
+      "path": "github.com/JuliaEditorSupport/julia-vim",
+      "version": "012c1086ca573cb5dd3ac00acde0adf327430c5b"
+    },
+    {
+      "type": "git",
+      "path": "github.com/airblade/vim-gitgutter",
+      "version": "2ef4f7e7b20dce7fd89adbeb6a943240b77a7a8e"
+    },
+    {
+      "type": "git",
+      "path": "github.com/chrisbra/matchit",
+      "version": "580869b2eac5bd98b6bb10fff64ef7b1119e3564"
+    },
+    {
+      "type": "git",
+      "path": "github.com/ctrlpvim/ctrlp.vim",
+      "version": "585143acbe15f362852d78bd050baff3c12902d7"
+    },
+    {
+      "type": "git",
+      "path": "github.com/dag/vim-fish",
+      "version": "50b95cbbcd09c046121367d49039710e9dc9c15f"
+    },
+    {
+      "type": "git",
+      "path": "github.com/farmergreg/vim-lastplace",
+      "version": "48ba343c8c1ca3039224727096aae214f51327d1"
+    },
+    {
+      "type": "git",
+      "path": "github.com/jpalardy/vim-slime",
+      "version": "cf896c1f4f37a9feb15d657dfd120aeeb6215ad8"
+    },
+    {
+      "type": "git",
+      "path": "github.com/junegunn/fzf",
+      "version": "9d7480ae3c109358ea0979626c6c9f68c79111c8"
+    },
+    {
+      "type": "git",
+      "path": "github.com/junegunn/fzf.vim",
+      "version": "467c3277884240f7b5430f8f4d600e3415c38f3b"
+    },
+    {
+      "type": "git",
+      "path": "github.com/nfvs/vim-perforce",
+      "version": "d1dcbe8aca797976678200f42cc2994b7f6c86c2"
+    },
+    {
+      "type": "git",
+      "path": "github.com/plasticboy/vim-markdown",
+      "version": "da5a7ac96f517e0fd6f886bc3fbe27156ca1f946"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/async.vim",
+      "version": "42371b5fb2cc07254295ff6beb3ca7cf235b7ede"
+    },
+    {
+      "type": "git",
+      "path": "github.com/preservim/nerdcommenter",
+      "version": "cbadb3d93e5dcb121793b182880ee784dbd78978"
+    },
+    {
+      "type": "git",
+      "path": "github.com/preservim/nerdtree",
+      "version": "07612557ebb4118ef4a337faa7033d0270773c71"
+    },
+    {
+      "type": "git",
+      "path": "github.com/roxma/vim-tmux-clipboard",
+      "version": "47187740b88f9dab213f44678800cc797223808e"
+    },
+    {
+      "type": "git",
+      "path": "github.com/ryanoasis/vim-devicons",
+      "version": "b06f5418a434644f64ba9f218472b5aa86eb03a6"
+    },
+    {
+      "type": "git",
+      "path": "github.com/terryma/vim-multiple-cursors",
+      "version": "701e92dd4cfd1b0f511e83a96d52bc590c0218dd"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tmux-plugins/vim-tmux-focus-events",
+      "version": "e80960715c09aef8ab9204848ed1683805a93a33"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tpope/vim-fugitive",
+      "version": "460664018a8eaecd89fb2b095fad59c0e16f5f06"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tpope/vim-obsession",
+      "version": "96a3f837c112cb64e0a9857b69f6d6a71041155e"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tpope/vim-repeat",
+      "version": "c947ad2b6a16983724a0153bdf7f66d7a80a32ca"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tpope/vim-surround",
+      "version": "f51a26d3710629d031806305b6c8727189cd1935"
+    },
+    {
+      "type": "git",
+      "path": "github.com/vim-airline/vim-airline",
+      "version": "099dd92eebe09ab27a483e381f2a708945e34330"
+    },
+    {
+      "type": "git",
+      "path": "github.com/vim-airline/vim-airline-themes",
+      "version": "6270e7d58828999da7239785ad4269899fab99b5"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "default",
+      "repos_path": [
+        "github.com/ErichDonGubler/vim-sublime-monokai",
+        "github.com/FranklandJack/llvm-vim",
+        "github.com/JuliaEditorSupport/julia-vim",
+        "github.com/airblade/vim-gitgutter",
+        "github.com/chrisbra/matchit",
+        "github.com/ctrlpvim/ctrlp.vim",
+        "github.com/dag/vim-fish",
+        "github.com/farmergreg/vim-lastplace",
+        "github.com/jpalardy/vim-slime",
+        "github.com/junegunn/fzf",
+        "github.com/junegunn/fzf.vim",
+        "github.com/nfvs/vim-perforce",
+        "github.com/plasticboy/vim-markdown",
+        "github.com/preservim/nerdcommenter",
+        "github.com/preservim/nerdtree",
+        "github.com/roxma/vim-tmux-clipboard",
+        "github.com/ryanoasis/vim-devicons",
+        "github.com/terryma/vim-multiple-cursors",
+        "github.com/tmux-plugins/vim-tmux-focus-events",
+        "github.com/tpope/vim-fugitive",
+        "github.com/tpope/vim-obsession",
+        "github.com/tpope/vim-repeat",
+        "github.com/tpope/vim-surround",
+        "github.com/vim-airline/vim-airline",
+        "github.com/vim-airline/vim-airline-themes"
+      ]
+    }
+  ]
+}

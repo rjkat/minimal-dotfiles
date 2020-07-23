@@ -1,0 +1,19 @@
+export PATH=${HOME}/bin:${PATH}
+export PATH=${HOME}/.local/bin:${PATH}
+export PATH=${HOME}/.fzf/bin:${PATH}
+export PATH=${HOME}/.local/usr/local/bin:${PATH}
+
+export POWERLINE_DIR=`python3 -c 'import powerline, os; print(os.path.dirname(powerline.__file__))'`
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\W\[\033[m\]\$ "
+export CLICOLOR=1
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export PYTHON_USER_BASE_DIR=`python3 -m site --user-base`
+prepend_path PATH "${PYTHON_USER_BASE_DIR}/bin"
+export VIMRUNTIME=$HOME/.local/usr/local/share/vim/vim82
+
+alias vi=vim
+alias julia="julia --color=yes"
+alias ag="ag --path-to-ignore=~/.ignore"
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
+

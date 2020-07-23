@@ -1,0 +1,152 @@
+#!/usr/bin/env bash
+set -x
+
+{{ if eq .chezmoi.os "linux" -}}
+    {{ if eq .chezmoi.osRelease.id "amzn" -}}
+        yes | sudo yum install make glibc-devel gcc patch ncurses-devel util-linux autoconf-archive automake protobuf-devel zlib-devel gcc-c++ ncurses-devel openssl-devel xz-devel
+    {{ else -}}
+        if [ ! -e /opt/pbs ]; then
+            sudo apt-get install build-essentials
+        fi
+    {{ end -}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+function linux_install() {
+    {{ if eq .chezmoi.osRelease.id "amzn" -}}
+        sudo yum install $@
+    {{ else -}} 
+    if [ ! -e /opt/pbs ]; then
+        sudo apt-get install $@
+    else
+        module load $@
+    fi
+    {{ end -}}
+}
+{{ end -}}
+
+function install_mosh() {
+{{ if eq .chezmoi.os "linux" -}}
+    autoconf --version || linux_install autoconf
+    automake --version || linux_install automake
+    pkg-config --version || linux_install pkg-config
+    linux_install protobuf-compiler libprotobuf-dev libssl-dev libncurses5-dev zlib1g-dev
+    git clone https://github.com/mobile-shell/mosh
+    pushd mosh
+    git pull
+    ./autogen.sh
+    ./configure --prefix=$HOME/.local && make && make install
+    popd
+    # rm -rf mosh
+{{ else if eq .chezmoi.os "darwin" -}}
+    brew install mosh
+{{ end -}}
+}
+
+if [ ! -e /opt/pbs ]; then
+    install_mosh
+fi
+
+function install_ag() {
+{{ if eq .chezmoi.os "linux" -}}
+    agdir="the_silver_searcher-2.2.0"
+    agtar="${agdir}.tar.gz"
+    curl https://geoff.greer.fm/ggreer_gpg_key.asc -o ggreer_gpg_key.asc
+    gpg --import ggreer_gpg_key.asc
+    curl https://geoff.greer.fm/ag/releases/${agtar} -o ${agtar}
+    curl https://geoff.greer.fm/ag/releases/${agtar}.asc -o ${agtar}.asc
+    gpg --verify ${agtar}.asc ${agtar} \
+    && tar -xzvf ${agtar} \
+    && cd ${agdir} && ./configure --prefix=$HOME/.local && make && make install
+    cd $HOME
+{{ else if eq .chezmoi.os "darwin" -}}
+    brew install the_silver_searcher
+{{ end -}}
+}
+
+ag --version || install_ag
+
+function install_python3() {
+{{ if eq .chezmoi.os "linux" -}}
+    linux_install python3 python3-pip
+{{ else if eq .chezmoi.os "darwin" -}}
+    brew install python3
+{{ end -}}
+}
+
+python3 --version || install_python3
+
+function install_tmux() {
+    wget https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz
+    tar -zxf libevent-*.tar.gz
+    pushd libevent-*/
+    ./configure --prefix=$HOME/.local --enable-shared
+    make && make install
+    popd
+
+{{ if eq .chezmoi.os "linux" -}}
+    yacc --version || linux_install bison
+{{ else if eq .chezmoi.os "darwin" -}}
+    yacc --version || brew install bison
+    brew install autoconf automake pkg-config
+{{ end -}}
+    git clone https://github.com/tmux/tmux.git
+    pushd tmux
+    git pull
+
+    # remove next- from version, since python powerline is broken in this case
+    sed -i'.bak' 's/AC_INIT(\[tmux\], next-/AC_INIT([tmux], /' configure.ac
+    ./autogen.sh
+    PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig ./configure --prefix=$HOME/.local
+    make && make install
+    popd
+    rm -rf tmux-* libevent-*
+}
+goodtmux=`tmux -V | head | sed '/tmux 3.3/!d'`
+if [ -z "$goodtmux" ]; then
+    install_tmux
+fi
+
+python3 -m pip install --user powerline-status
+python3 -m pip install --user tmuxp==1.3.2
+
+[ -d ~/.tmux/plugins/tpm ] || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+if [ ! -d ~/.fzf ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+else
+    pushd ~/.fzf; git pull; popd
+fi
+
+yes | ~/.fzf/install
+
+LOCAL_BIN_DIR=~/.local/usr/local/bin
+mkdir -p $LOCAL_BIN_DIR
+export PATH=${LOCAL_BIN_DIR}:${PATH}
+
+# if we don't have vim 8.2, install it
+goodvim=`vim --version | head | sed '/8\.2/!d'`
+if [ ! -f $LOCAL_BIN_DIR/vim ] || [ -z "$goodvim" ]; then
+    git clone https://github.com/vim/vim
+    pushd vim
+    git pull
+    popd
+    make -C vim
+    make -C vim install DESTDIR=~/.local
+    rm -rf vim
+fi
+
+git config --global user.email "{{ .email }}"
+git config --global user.name "{{ .name }}"
+git config --global push.default simple
+
+install_volt() {
+{{ if eq .chezmoi.os "linux" -}}
+    volturl="https://github.com/vim-volt/volt/releases/download/v0.3.7/volt-v0.3.7-linux-amd64"
+{{ else if eq .chezmoi.os "darwin" -}}
+    volturl="https://github.com/vim-volt/volt/releases/download/v0.3.7/volt-v0.3.7-darwin-amd64"
+{{ end -}}
+    curl -L $volturl -o $LOCAL_BIN_DIR/volt
+    chmod +x $LOCAL_BIN_DIR/volt
+}
+volt self-upgrade || install_volt
