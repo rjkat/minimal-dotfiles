@@ -74,7 +74,7 @@ function install_python3() {
 {{ end -}}
 }
 
-python3 --version || install_python3
+install_python3
 
 function install_tmux() {
     wget https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz
