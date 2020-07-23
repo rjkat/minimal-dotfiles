@@ -8,7 +8,7 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\W\[\033[m\]\$
 export CLICOLOR=1
 export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 export PYTHON_USER_BASE_DIR=`python3 -m site --user-base`
-prepend_path PATH "${PYTHON_USER_BASE_DIR}/bin"
+export PATH="${PYTHON_USER_BASE_DIR}/bin":${PATH}
 export VIMRUNTIME=$HOME/.local/usr/local/share/vim/vim82
 
 alias vi=vim
