@@ -74,11 +74,6 @@
     },
     {
       "type": "git",
-      "path": "github.com/preservim/nerdcommenter",
-      "version": "cbadb3d93e5dcb121793b182880ee784dbd78978"
-    },
-    {
-      "type": "git",
       "path": "github.com/preservim/nerdtree",
       "version": "07612557ebb4118ef4a337faa7033d0270773c71"
     },
